@@ -527,6 +527,21 @@ Track Mode HUD/map now offset telemetry sampling by the CSV-vs-video lead-in
       by design; added the repo URL to the tile User-Agent to complete it.
       Revisit (MapTiler/Stadia key) only if OSM ever blocks or rate-limits us. (6) **Flip
       public + launch post** (Reddit) — gated on (2), strongly helped by (4).
+- [ ] **M11** — HW4 camera support: pillar cameras + the bumper camera from
+      the newer recording system. **Blocked on sample footage** from a HW4
+      vehicle (none available as of 2026-06-11) — do not guess formats.
+      Current readiness: pillars are already first-class (`CAMERA_ORDER`,
+      labels, ordering tests); an unknown bumper token will still be
+      discovered/played/synced (dynamic discovery) but sorts after known
+      cameras with a generic label — adding it to `CAMERA_ORDER` +
+      `cameraLabel()` is a two-line fix once the real filename token is known.
+      To verify against real footage: (1) the bumper filename token;
+      (2) resolution/codec — if HW4 records HEVC, decode support and sync
+      perf need re-validation; (3) any folder-layout changes; (4) the sync
+      gate (< ~2 frames spread) with up to 7 simultaneous streams — re-run
+      the M1-style by-eye Diagnostics pass and headless self-test; (5) grid
+      layout/UX at 5–7 tiles.
+
 Not scheduled: **sidebar virtualization** — evaluated and rejected in M6 at ~118
 items; revisit only if a real drive scan makes the sidebar lag (roughly >500–1000
 items). A tripwire, not a milestone.
