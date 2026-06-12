@@ -1,0 +1,28 @@
+# --- Example/sample footage (large, local-only test fixtures — never commit) ---
+TeslaCam/
+TeslaTrackMode/
+_frames/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# --- Logs / temp ---
+*.log
+*.tmp
+npm-debug.log*
+
+# --- Node / Electron / Vite build output ---
+node_modules/
+out/
+dist/
+dist-electron/
+releases/
+*.local
+.eslintcache

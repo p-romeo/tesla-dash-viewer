@@ -1,0 +1,45 @@
+name: Bug report
+description: A clip won't play, cameras are out of sync, timestamps are wrong, or the UI misbehaves
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown in the installer filename (e.g. 0.1.0-alpha.1)
+    validations:
+      required: true
+  - type: dropdown
+    id: footage-kind
+    attributes:
+      label: Footage type
+      options:
+        - SavedClips (Sentry/dashcam save)
+        - RecentClips
+        - Track Mode
+        - Not footage-related
+    validations:
+      required: true
+  - type: input
+    id: clip-folder
+    attributes:
+      label: Affected clip folder name
+      description: e.g. `2024-06-05_17-03-21` — lets us reason about the exact files without needing your footage
+  - type: input
+    id: car
+    attributes:
+      label: Car model and camera count
+      description: e.g. Model 3 2023, 4 cameras (front/back/repeaters) — newer cars add pillar cameras
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: layout
+    attributes:
+      label: Drive folder layout (if scanning fails)
+      description: 'Output of: `Get-ChildItem -Recurse -Depth 2 <your-drive> | Select-Object FullName` (trim anything private)'
+      render: text

@@ -1,0 +1,8 @@
+reviews:
+  path_instructions:
+    - path: "**/*"
+      instructions: >
+        This codebase intentionally omits docstrings and multi-line comment blocks.
+        Comments are added only when the WHY is non-obvious (hidden constraints, sync
+        gotchas, Tesla format quirks). Do not flag missing docstrings or suggest adding
+        them — well-named identifiers are the documentation here.

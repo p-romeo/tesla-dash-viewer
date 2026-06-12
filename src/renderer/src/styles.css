@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-200 font-sans antialiased;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* Visible keyboard-focus ring across all interactive controls (mouse clicks
+     don't trigger :focus-visible, so this stays out of the way for pointer use). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent/70;
+  }
+}
+
+@layer utilities {
+  /* Thin, modern range slider used by the transport scrubber. */
+  .scrubber {
+    @apply h-1.5 w-full cursor-pointer appearance-none rounded-full bg-ink-700;
+  }
+  .scrubber::-webkit-slider-thumb {
+    @apply h-3.5 w-3.5 appearance-none rounded-full bg-accent-soft shadow;
+    transition: transform 0.1s ease;
+  }
+  .scrubber::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-ink-700;
+  }
+}
+
+/* MapPanel markers (created as raw DOM by maplibre-gl, so styled in plain CSS).
+   The moving Track Mode dot pulses; the SavedClips pin is a static teardrop. */
+.tdv-track-marker {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #3b82f6;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35);
+}
+
+/* maplibre sets an inline transform on the marker element for positioning, so the
+   rotated teardrop lives on a ::before to avoid clobbering it. */
+.tdv-pin-marker {
+  position: relative;
+  width: 16px;
+  height: 16px;
+}
+.tdv-pin-marker::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px 9999px 9999px 0;
+  background: #f59e0b;
+  border: 2px solid #fff;
+  transform: rotate(-45deg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}

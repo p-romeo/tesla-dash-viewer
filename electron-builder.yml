@@ -1,0 +1,23 @@
+# Packaging config for `npm run build:win` (electron-builder).
+# `files` is a whitelist on purpose: the repo root holds ~17GB of git-ignored
+# sample footage (TeslaCam/, TeslaTrackMode/) that must never be swept into a
+# package. node_modules is excluded because every npm dep is vite-bundled into
+# out/ — src/main and src/preload import only electron + node built-ins.
+appId: com.paulromeo.tesla-dash-viewer
+productName: Tesla Dash Viewer
+directories:
+  buildResources: build
+  output: releases
+files:
+  - out/**
+  - package.json
+  - '!node_modules/**'
+asar: true
+npmRebuild: false
+win:
+  target: nsis
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: ${productName}-${version}-setup.${ext}
